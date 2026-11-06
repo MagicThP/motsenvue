@@ -3,30 +3,199 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Mots en vue — Assistance</title>
-<style>body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;line-height:1.6;color:#253A33;background:#F7F4EC}
-header{background:#245B4B;color:#F7F4EC;padding:56px 24px 40px;text-align:center}
-h1{margin:0;font-family:"New York",Georgia,serif;font-size:2.4rem;font-weight:500}header p{margin:.4rem 0 0;color:#DCE9E2}
-main{max-width:640px;margin:0 auto;padding:24px}h2{margin-top:2rem;font-size:1.2rem}a{color:#245B4B}
-footer{max-width:640px;margin:0 auto;padding:24px;color:#4B5D55;font-size:.9rem}
-@media (prefers-color-scheme:dark){body{background:#151D1B;color:#F4F1E8}a{color:#B4DBC2}footer{color:#D3DDD5}}</style>
+<title>Mots en vue — Observez, nommez, découvrez</title>
+<meta name="description" content="Mots en vue, un jeu de mots illustré pour iPad et iPhone : une scène, une lettre, et l'on cherche tous les mots qu'on voit dans l'image. Gratuit, sans publicité, sans compte, hors ligne.">
+<meta property="og:title" content="Mots en vue — Observez, nommez, découvrez">
+<meta property="og:description" content="Une scène, une lettre : trouvez les mots qui commencent par cette lettre dans l'illustration. Gratuit, sans publicité, hors ligne.">
+<meta property="og:image" content="https://magicthp.github.io/motsenvue/img/ipad-1-manche.jpg">
+<meta property="og:type" content="website">
+<link rel="apple-touch-icon" href="img/apple-touch-icon.png">
+<link rel="icon" href="img/apple-touch-icon.png">
+<style>
+:root{
+  --fond:#F7F4EC; --carte:#FFFDF8; --texte:#253A33; --doux:#4B5D55; --vert:#245B4B; --vert-clair:#DCE9E2;
+  --cuivre:#A35B2A; --trait:#E2DCCD; --ombre:0 10px 30px rgba(36,58,51,.12);
+  --serif:"New York","Iowan Old Style",Georgia,serif;
+}
+@media (prefers-color-scheme:dark){:root{
+  --fond:#151D1B; --carte:#1D2826; --texte:#F4F1E8; --doux:#C9D4CD; --vert:#B4DBC2; --vert-clair:#24423A;
+  --cuivre:#E4A273; --trait:#2E3B38; --ombre:0 10px 30px rgba(0,0,0,.35);
+}}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;font-size:1.1875rem;line-height:1.6;color:var(--texte);background:var(--fond)}
+img{max-width:100%;height:auto;display:block}
+a{color:var(--vert)}
+h1,h2,h3{font-family:var(--serif);font-weight:600;line-height:1.2;color:var(--vert)}
+h2{font-size:clamp(1.7rem,4vw,2.3rem);margin:0 0 .6rem}
+h3{font-size:1.35rem;margin:0 0 .3rem}
+.page{max-width:1080px;margin:0 auto;padding:0 20px}
+section{padding:56px 0;border-top:1px solid var(--trait)}
+.chapeau{font-size:1.25rem;color:var(--doux);max-width:40em;margin:0 0 1.5rem}
+
+/* En-tête */
+.entete{display:grid;grid-template-columns:1.05fr 1fr;gap:48px;align-items:center;padding:56px 0 64px}
+.marque{display:flex;align-items:center;gap:16px;margin-bottom:24px}
+.marque img{width:76px;height:76px;border-radius:18px;box-shadow:var(--ombre)}
+.marque span{font-family:var(--serif);font-size:1.6rem;font-weight:600;color:var(--vert)}
+.entete h1{font-size:clamp(2.4rem,6vw,3.6rem);margin:0 0 .8rem}
+.entete h1 em{font-style:normal;color:var(--cuivre)}
+.entete p.accroche{font-size:1.3rem;margin:0 0 1.6rem;max-width:30em}
+.bouton{display:inline-flex;align-items:center;justify-content:center;min-height:60px;padding:0 28px;border-radius:16px;background:var(--vert);color:var(--fond);font-weight:600;font-size:1.15rem;text-decoration:none}
+.sortie{margin:.8rem 0 0;color:var(--doux);font-size:1rem}
+.badges{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:1.6rem 0 0}
+.badges li{padding:8px 16px;border-radius:999px;background:var(--vert-clair);color:var(--texte);font-size:1rem;font-weight:500}
+.ecran-ipad{border-radius:22px;overflow:hidden;box-shadow:var(--ombre);border:8px solid #1f2523}
+
+/* Trois temps */
+.temps{display:grid;grid-template-columns:repeat(3,1fr);gap:28px;margin-top:32px}
+.temps figure{margin:0;background:var(--carte);border:1px solid var(--trait);border-radius:22px;padding:22px;display:flex;flex-direction:column;gap:18px}
+.temps .num{display:inline-flex;width:40px;height:40px;border-radius:50%;align-items:center;justify-content:center;background:var(--cuivre);color:#fff;font-weight:700;margin-bottom:8px}
+.temps p{margin:0;color:var(--doux)}
+.ecran-iphone{border-radius:26px;overflow:hidden;border:6px solid #1f2523;max-width:260px;margin:auto auto 0}
+
+/* Deux colonnes */
+.duo{display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.duo.inverse > :first-child{order:2}
+.liste{padding:0;margin:0;list-style:none}
+.liste li{padding:10px 0 10px 34px;position:relative;border-bottom:1px solid var(--trait)}
+.liste li::before{content:"";position:absolute;left:4px;top:20px;width:14px;height:14px;border-radius:50%;border:3px solid var(--cuivre)}
+
+/* Aide */
+.questions{display:grid;grid-template-columns:1fr 1fr;gap:20px 40px;margin-top:24px}
+.questions div{background:var(--carte);border:1px solid var(--trait);border-radius:18px;padding:20px 22px}
+.questions strong{display:block;margin-bottom:4px}
+.questions p{margin:0;color:var(--doux)}
+
+/* Presse */
+.telechargements{display:flex;flex-wrap:wrap;gap:12px;list-style:none;padding:0;margin:20px 0 0}
+.telechargements a{display:inline-flex;align-items:center;min-height:60px;padding:0 20px;border-radius:14px;border:2px solid var(--vert);text-decoration:none;font-weight:600}
+
+footer{border-top:1px solid var(--trait);padding:32px 0 48px;color:var(--doux);font-size:1rem}
+footer nav{display:flex;flex-wrap:wrap;gap:8px 24px;margin-bottom:10px}
+footer nav a{display:inline-flex;align-items:center;min-height:44px}
+
+@media (max-width:820px){
+  .entete,.duo,.questions{grid-template-columns:1fr;gap:32px}
+  .duo.inverse > :first-child{order:0}
+  .temps{grid-template-columns:1fr}
+  .entete{padding-top:32px}
+}
+</style>
 </head>
 <body>
-<header><h1>Mots en vue</h1><p>Assistance · Support</p></header>
-<main>
-<h2>Le jeu</h2>
-<p>Une illustration, une lettre : tapez les mots qui commencent par cette lettre et que vous voyez dans l'image. Pas de chrono, pas de pénalité ; à la fin, le jeu vous montre les mots que vous n'avez pas vus.</p>
-<h2>Une question, un mot refusé, une idée ?</h2>
-<p>Dans le jeu : Réglages › Donner mon avis. Ou par e-mail : <a href="mailto:wordsahoy@icloud.com">wordsahoy@icloud.com</a>.</p>
-<p>Si un mot que vous voyez dans l'image a été refusé, dites-nous lequel et dans quelle scène : nous l'ajouterons.</p>
-<h2>Questions fréquentes</h2>
-<p><strong>Faut-il une connexion ?</strong> Non, le jeu fonctionne entièrement hors ligne.</p>
-<p><strong>Ma partie est-elle gardée si je quitte ?</strong> Oui : la manche en cours vous attend sur l'accueil (« Manche à reprendre »).</p>
-<p><strong>Le texte est trop petit.</strong> Le jeu suit la taille de texte de l'appareil : Réglages › Accessibilité › Affichage et taille du texte › Police plus grande.</p>
-<h2>In English</h2>
-<p>Words Ahoy! shows an illustration and a letter: type the words starting with that letter that you can see in the picture. Questions or feedback: <a href="mailto:wordsahoy@icloud.com">wordsahoy@icloud.com</a>.</p>
-<p><a href="confidentialite.html">Politique de confidentialité · Privacy policy</a></p>
-</main>
-<footer>© 2026 Thibaud Piquet</footer>
+<div class="page">
+
+<header class="entete">
+  <div>
+    <div class="marque"><img src="img/icone.png" alt="" width="76" height="76"><span>Mots en vue</span></div>
+    <h1>Observez, nommez, <em>découvrez</em>.</h1>
+    <p class="accroche">Une scène illustrée, une lettre&nbsp;: trouvez tous les mots qui commencent par cette lettre et que vous voyez dans l'image. À votre rythme, sans chrono.</p>
+    <a class="bouton" href="#comment">Voir comment on joue</a>
+    <p class="sortie">Bientôt sur l'App Store, pour iPad et iPhone.</p>
+    <ul class="badges" aria-label="En bref">
+      <li>Gratuit</li><li>Sans publicité</li><li>Sans compte</li><li>Hors ligne</li>
+    </ul>
+  </div>
+  <img class="ecran-ipad" src="img/ipad-1-manche.jpg" width="1050" height="1400" alt="Une manche sur iPad : la cuisine illustrée, la lettre C et les mots déjà trouvés, comme chat, carafe et croissant.">
+</header>
+
+<section id="comment">
+  <h2>Une partie en trois temps</h2>
+  <p class="chapeau">Il n'y a rien à apprendre&nbsp;: la première manche s'explique en une phrase.</p>
+  <div class="temps">
+    <figure>
+      <div><span class="num">1</span><h3>Regarder</h3><p>Une cuisine, un marché, un grenier… Chaque scène fourmille de détails. Agrandissez l'image pour tout voir.</p></div>
+      <img class="ecran-iphone" src="img/iphone-1-manche.jpg" width="598" height="1300" alt="La cuisine sur iPhone, avec la lettre C et six mots trouvés." loading="lazy">
+    </figure>
+    <figure>
+      <div><span class="num">2</span><h3>Nommer</h3><p>Écrivez les mots qui commencent par la lettre. Pluriels, articles et petites fautes sont reconnus. Besoin d'un coup de pouce&nbsp;? L'indice éclaire une zone de l'image.</p></div>
+      <img class="ecran-iphone" src="img/iphone-3-indice.jpg" width="598" height="1300" alt="Le marché sur iPhone : un indice éclaire une zone de l'image pour un mot en P." loading="lazy">
+    </figure>
+    <figure>
+      <div><span class="num">3</span><h3>Découvrir</h3><p>Quand vous avez fini, le jeu montre un à un les mots que vous n'aviez pas vus, chaque objet entouré sur l'illustration.</p></div>
+      <img class="ecran-iphone" src="img/iphone-4-decouverte.jpg" width="598" height="1300" alt="La découverte des mots manqués : la casserole est entourée sur l'image de la cuisine." loading="lazy">
+    </figure>
+  </div>
+</section>
+
+<section>
+  <div class="duo">
+    <div>
+      <h2>Un mot refusé n'est jamais «&nbsp;faux&nbsp;»</h2>
+      <p class="chapeau">Les mots sont choisis et vérifiés à la main, scène par scène. Si le vôtre n'est pas dans la liste, le jeu vous le dit simplement, et vous continuez.</p>
+      <ul class="liste">
+        <li>Aucun chronomètre, aucune pénalité, aucun classement.</li>
+        <li>Un indice quand vous le souhaitez, sans limite.</li>
+        <li>De courtes définitions pour les mots moins courants.</li>
+        <li>Un mot vous semble oublié&nbsp;? Dites-le-nous&nbsp;: nous l'ajoutons.</li>
+      </ul>
+    </div>
+    <img class="ecran-ipad" src="img/ipad-4-decouverte.jpg" width="1050" height="1400" alt="La découverte sur iPad : un objet entouré d'un cercle cuivré et son nom en grand." loading="lazy">
+  </div>
+</section>
+
+<section>
+  <div class="duo inverse">
+    <div>
+      <h2>20 scènes, et un carnet pour garder vos mots</h2>
+      <p class="chapeau">La Bibliothèque range les scènes en albums&nbsp;: à la maison, au village, en vacances. Le Carnet garde chaque mot découvert et la scène où vous l'avez vu.</p>
+      <ul class="liste">
+        <li>20 scènes illustrées et 57 manches pour commencer.</li>
+        <li>La collection s'enrichira progressivement.</li>
+        <li>Vos parties restent sur votre appareil.</li>
+      </ul>
+    </div>
+    <img class="ecran-ipad" src="img/ipad-2-bibliotheque.jpg" width="1050" height="1400" alt="La Bibliothèque sur iPad : les albums de scènes et leurs vignettes illustrées." loading="lazy">
+  </div>
+</section>
+
+<section>
+  <div class="duo">
+    <div>
+      <h2>Pensé pour être lu confortablement</h2>
+      <p class="chapeau">Le jeu suit la taille de texte de votre iPad ou de votre iPhone, jusqu'aux plus grandes. Contrastes soignés, grands boutons, aucune animation indispensable.</p>
+      <p>Il se joue seul ou à plusieurs autour du même iPad&nbsp;: il suffit de chercher ensemble, à voix haute.</p>
+    </div>
+    <img class="ecran-ipad" src="img/ipad-5-carnet.jpg" width="1050" height="1400" alt="Le Carnet sur iPad : chaque mot découvert sur une fiche illustrée." loading="lazy">
+  </div>
+</section>
+
+<section id="aide">
+  <h2>Aide</h2>
+  <p class="chapeau">Une question, un mot refusé, une idée&nbsp;? Dans le jeu&nbsp;: Réglages › Donner mon avis. Ou par e-mail&nbsp;: <a href="mailto:wordsahoy@icloud.com">wordsahoy@icloud.com</a>. Pour un mot refusé, dites-nous lequel et dans quelle scène.</p>
+  <div class="questions">
+    <div><strong>Faut-il une connexion&nbsp;?</strong><p>Non, le jeu fonctionne entièrement hors ligne.</p></div>
+    <div><strong>Faut-il créer un compte&nbsp;?</strong><p>Non. Aucun compte, aucune inscription, aucune publicité.</p></div>
+    <div><strong>Ma partie est-elle gardée si je quitte&nbsp;?</strong><p>Oui&nbsp;: la manche en cours vous attend sur l'accueil («&nbsp;Manche à reprendre&nbsp;»).</p></div>
+    <div><strong>Le texte est trop petit.</strong><p>Le jeu suit la taille de texte de l'appareil&nbsp;: Réglages › Accessibilité › Affichage et taille du texte › Police plus grande.</p></div>
+    <div><strong>Sur quels appareils&nbsp;?</strong><p>iPad et iPhone, avec iPadOS ou iOS 17 ou plus récent.</p></div>
+    <div><strong>Mes données&nbsp;?</strong><p>L'app ne collecte rien. Voir la <a href="confidentialite.html">politique de confidentialité</a>.</p></div>
+  </div>
+</section>
+
+<section id="presse">
+  <h2>Presse et médiathèques</h2>
+  <p class="chapeau">Mots en vue est un jeu de mots illustré, gratuit, pour iPad et iPhone&nbsp;: une scène, une lettre, et l'on cherche tous les mots qui commencent par cette lettre dans l'illustration. Sans chrono, sans pénalité, sans publicité&nbsp;; on joue à son rythme, seul ou à plusieurs, et l'on découvre à la fin les mots qu'on n'avait pas vus. Créé par Thibaud Piquet, développeur indépendant.</p>
+  <p>Vous préparez un article ou un atelier&nbsp;? Écrivez-nous&nbsp;: <a href="mailto:wordsahoy@icloud.com">wordsahoy@icloud.com</a>.</p>
+  <ul class="telechargements">
+    <li><a href="img/icone.png" download>Icône (PNG)</a></li>
+    <li><a href="img/ipad-1-manche.jpg" download>Capture iPad · manche</a></li>
+    <li><a href="img/ipad-4-decouverte.jpg" download>Capture iPad · découverte</a></li>
+    <li><a href="img/iphone-1-manche.jpg" download>Capture iPhone · manche</a></li>
+  </ul>
+</section>
+
+<section lang="en">
+  <h2>In English</h2>
+  <p>Words Ahoy! shows an illustrated scene and a letter: type every word starting with that letter that you can see in the picture. French only for now. Questions or feedback: <a href="mailto:wordsahoy@icloud.com">wordsahoy@icloud.com</a>.</p>
+</section>
+
+<footer>
+  <nav aria-label="Liens"><a href="#aide">Aide</a><a href="confidentialite.html">Confidentialité</a><a href="mailto:wordsahoy@icloud.com">Contact</a><a href="#presse">Presse</a></nav>
+  <p>L'app ne collecte aucune donnée. © 2026 Thibaud Piquet</p>
+</footer>
+
+</div>
 </body>
 </html>
