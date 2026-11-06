@@ -42,6 +42,11 @@ section{padding:56px 0;border-top:1px solid var(--trait)}
 .entete h1 em{font-style:normal;color:var(--cuivre)}
 .entete p.accroche{font-size:1.3rem;margin:0 0 1.6rem;max-width:30em}
 .bouton{display:inline-flex;align-items:center;justify-content:center;min-height:60px;padding:0 28px;border-radius:16px;background:var(--vert);color:var(--fond);font-weight:600;font-size:1.15rem;text-decoration:none}
+.actions{display:flex;flex-wrap:wrap;gap:12px}
+.bouton.secondaire{background:transparent;color:var(--vert);border:2px solid var(--vert)}
+.etapes{counter-reset:e;list-style:none;padding:0;margin:20px 0;display:grid;gap:12px}
+.etapes li{counter-increment:e;position:relative;padding:14px 18px 14px 64px;background:var(--carte);border:1px solid var(--trait);border-radius:16px}
+.etapes li::before{content:counter(e);position:absolute;left:16px;top:12px;width:34px;height:34px;border-radius:50%;background:var(--cuivre);color:#fff;font-weight:700;display:flex;align-items:center;justify-content:center}
 .sortie{margin:.8rem 0 0;color:var(--doux);font-size:1rem}
 .badges{display:flex;flex-wrap:wrap;gap:10px;list-style:none;padding:0;margin:1.6rem 0 0}
 .badges li{padding:8px 16px;border-radius:999px;background:var(--vert-clair);color:var(--texte);font-size:1rem;font-weight:500}
@@ -91,13 +96,13 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px}
     <div class="marque"><img src="img/icone.png" alt="" width="76" height="76"><span>Mots en vue</span></div>
     <h1>Observez, nommez, <em>découvrez</em>.</h1>
     <p class="accroche">Une scène illustrée, une lettre&nbsp;: trouvez tous les mots qui commencent par cette lettre et que vous voyez dans l'image. À votre rythme, sans chrono.</p>
-    <a class="bouton" href="#comment">Voir comment on joue</a>
-    <p class="sortie">Bientôt sur l'App Store, pour iPad et iPhone.</p>
+    <div class="actions"><a class="bouton" href="#beta">Tester avant la sortie</a><a class="bouton secondaire" href="#comment">Voir comment on joue</a></div>
+    <p class="sortie">Sortie prévue en décembre 2026 sur l'App Store, pour iPad et iPhone.</p>
     <ul class="badges" aria-label="En bref">
       <li>Gratuit</li><li>Sans publicité</li><li>Sans compte</li><li>Hors ligne</li>
     </ul>
   </div>
-  <img class="ecran-ipad" src="img/ipad-1-manche.jpg" width="1050" height="1400" alt="Une manche sur iPad : la cuisine illustrée, la lettre C et les mots déjà trouvés, comme chat, carafe et croissant.">
+  <img class="ecran-ipad" src="img/ipad-3-indice.jpg" width="1050" height="1400" alt="Une manche sur iPad : la boulangerie illustrée, la lettre F, trois mots trouvés et un indice qui éclaire une zone de l'image.">
 </header>
 
 <section id="comment">
@@ -128,7 +133,7 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px}
         <li>Aucun chronomètre, aucune pénalité, aucun classement.</li>
         <li>Un indice quand vous le souhaitez, sans limite.</li>
         <li>De courtes définitions pour les mots moins courants.</li>
-        <li>Un mot vous semble oublié&nbsp;? Dites-le-nous&nbsp;: nous l'ajoutons.</li>
+        <li>Un mot vous semble oublié&nbsp;? Signalez-le-nous&nbsp;: nous vérifierons s'il peut rejoindre la liste.</li>
       </ul>
     </div>
     <img class="ecran-ipad" src="img/ipad-4-decouverte.jpg" width="1050" height="1400" alt="La découverte sur iPad : un objet entouré d'un cercle cuivré et son nom en grand." loading="lazy">
@@ -161,16 +166,34 @@ footer nav a{display:inline-flex;align-items:center;min-height:44px}
   </div>
 </section>
 
+<section id="beta">
+  <div class="duo">
+    <div>
+      <h2>Tester avant la sortie</h2>
+      <p class="chapeau">Jusqu'au 1er décembre, quelques dizaines de joueurs peuvent essayer Mots en vue avant tout le monde, gratuitement, sur iPad ou iPhone (iOS 17 ou plus récent). C'est une version de test&nbsp;: elle peut encore changer.</p>
+      <ol class="etapes">
+        <li>Installez l'app <strong>TestFlight</strong> d'Apple depuis l'App Store.</li>
+        <li>Sur votre iPad ou votre iPhone, ouvrez le lien ci-dessous, puis touchez «&nbsp;Accepter&nbsp;» et «&nbsp;Installer&nbsp;».</li>
+        <li>Jouez à votre rythme. Un mot visible a été refusé&nbsp;? Dites-le-nous depuis le jeu (Réglages › Donner mon avis)&nbsp;: la scène, la lettre, le mot écrit et où se trouve l'objet.</li>
+      </ol>
+      <a class="bouton" href="https://testflight.apple.com/join/7P9NFesH">Rejoindre la version de test</a>
+      <p class="sortie">Places limitées. Si le lien indique que la version de test est complète, merci de votre intérêt&nbsp;: rendez-vous à la sortie, en décembre.</p>
+    </div>
+    <img class="ecran-ipad" src="img/ipad-1-manche.jpg" width="1050" height="1400" alt="Une manche sur iPad : la cuisine, la lettre C, et les mots trouvés au-dessus du clavier." loading="lazy">
+  </div>
+</section>
+
 <section id="aide">
   <h2>Aide</h2>
-  <p class="chapeau">Une question, un mot refusé, une idée&nbsp;? Dans le jeu&nbsp;: Réglages › Donner mon avis. Ou par e-mail&nbsp;: <a href="mailto:wordsahoy@icloud.com">wordsahoy@icloud.com</a>. Pour un mot refusé, dites-nous lequel et dans quelle scène.</p>
+  <p class="chapeau">Une question, un mot refusé, une idée&nbsp;? Dans le jeu&nbsp;: Réglages › Donner mon avis. Ou par e-mail&nbsp;: <a href="mailto:wordsahoy@icloud.com">wordsahoy@icloud.com</a>. </p>
+  <p>Pour un mot refusé, indiquez-nous la scène, la lettre, le mot que vous avez écrit et où se trouve l'objet dans l'image. Une capture d'écran aide beaucoup.</p>
   <div class="questions">
     <div><strong>Faut-il une connexion&nbsp;?</strong><p>Non, le jeu fonctionne entièrement hors ligne.</p></div>
     <div><strong>Faut-il créer un compte&nbsp;?</strong><p>Non. Aucun compte, aucune inscription, aucune publicité.</p></div>
     <div><strong>Ma partie est-elle gardée si je quitte&nbsp;?</strong><p>Oui&nbsp;: la manche en cours vous attend sur l'accueil («&nbsp;Manche à reprendre&nbsp;»).</p></div>
     <div><strong>Le texte est trop petit.</strong><p>Le jeu suit la taille de texte de l'appareil&nbsp;: Réglages › Accessibilité › Affichage et taille du texte › Police plus grande.</p></div>
     <div><strong>Sur quels appareils&nbsp;?</strong><p>iPad et iPhone, avec iPadOS ou iOS 17 ou plus récent.</p></div>
-    <div><strong>Mes données&nbsp;?</strong><p>L'app ne collecte rien. Voir la <a href="confidentialite.html">politique de confidentialité</a>.</p></div>
+    <div><strong>Mes données&nbsp;?</strong><p>L'app ne collecte rien et n'envoie rien d'elle-même. Si vous nous écrivez, nous recevons votre e-mail. Voir la <a href="confidentialite.html">politique de confidentialité</a>.</p></div>
   </div>
 </section>
 
